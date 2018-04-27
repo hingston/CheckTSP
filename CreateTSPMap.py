@@ -10,23 +10,38 @@
 # Email: cdgamlin@gmail.com
 # -------------------------------------------------------
 
+# -------------------------------------------------------
+# Updated to Python 3 and now complies with all PEPs
+# Author: William Hingston
+# -------------------------------------------------------
+
+import os
 import sys
 from math import sqrt
 from random import random
 
-if len(sys.argv)!=3:
-	print "Error!: Incorrect arguments"
-	print "Usage: python createmap.py NUMBER_OF_TOWNS MAX_DISTANCE"
-	exit()
+if len(sys.argv) != 4:
+    print("Error!: Incorrect arguments")
+    print("Usage: python createmap.py NUMBER_OF_TOWNS MAX_DISTANCE OUTPUT_FILE_NAME")
+    exit()
 
-numTowns=int(sys.argv[1])
-maxDist=int(sys.argv[2])
+num_towns = int(sys.argv[1])
+max_dist = int(sys.argv[2])
+file_name = sys.argv[3]
 
-posTown=[(random()+1j*random())*maxDist/sqrt(2) for x in xrange (numTowns)]
+try:
+    os.remove(file_name)
+except OSError:
+    pass
 
-print(numTowns)
+posTown = [(random() + 1j * random()) * max_dist / sqrt(2) for x in range(num_towns)]
 
-for i in xrange(1,numTowns):
-	for j in xrange(i):
-		print int(abs(posTown[i]-posTown[j]))+1,
-	print
+with open(file_name, "a") as file:
+    file.write(str(num_towns) + "\n")
+
+for i in range(1, num_towns):
+    for j in range(i):
+        with open(file_name, "a") as file:
+            file.write(str(int(abs(posTown[i] - posTown[j])) + 1) + " ")
+    with open(file_name, "a") as file:
+        file.write("\n")

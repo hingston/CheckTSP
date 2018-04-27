@@ -11,8 +11,8 @@
 # -------------------------------------------------------
 
 import sys
-from random import random
 from math import sqrt
+from random import random
 
 if len(sys.argv)!=3:
 	print "Error!: Incorrect arguments"

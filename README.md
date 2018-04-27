@@ -1,7 +1,5 @@
 # CheckTSP
 A brute force checker for the travelling salesman problem in Python
-
-## CheckTSP
 ###### Usage
 `python CheckTSP.py MAP_FILE_NAME`
 
